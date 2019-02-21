@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin')
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.1.0.RELEASE'
+    id 'net.ltgt.apt' version '0.9'
+    id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+mainClassName = 'io.github.ekamekas.Application'
+
+group 'io.github.ekamekas'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir('src/main/resources')
+        }
+    }
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('com.google.guava:guava:27.0.1-jre')
+    implementation('com.h2database:h2')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnit()
+}
